@@ -1,7 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AuthController;
 
+Route::get('/', [ContactController::class, 'index']);
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contact.form');
+Route::post('/contact/submit', [ContactController::class, 'submit'])->name('contact.submit');
+Route::middleware('auth')->group(function () {
+    Route::get('/admin', [AuthController::class, 'index']);
+});
+Route::get('/admin', [AuthController::class, 'search']);
+Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
+Route::post('/contacts', [ContactController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +26,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
