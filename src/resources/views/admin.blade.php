@@ -40,9 +40,9 @@
   </div>
 </form>
 
-<div class="export-btn">
-  <button class="export">エクスポート</button>
-</div>
+<a href="{{ route('admin.users.export') }}" class="btn btn-primary">
+  エクスポート
+</a>
 <!-- ページネーション用のリンクボタン -->
 <div class="paginate">
   {{ $contacts ->links() }}
@@ -123,11 +123,13 @@
                 <label for="modal-wata__close">
                   <div class="modal-wata__background"></div>
                 </label>
-                <form class="delete-form" action="/delete" method="post">
+                <form class="delete-form" action="contact/delete" method="post">
                   @method('delete')
                   @csrf
-                  <input type="hidden" name="id" value="{{ $contact['id'] }}" />
-                  <button class="delete-btn">削除</button>
+                  <div class="delete-form__button">
+                    <input type="hidden" name="id" value="{{ $contact['id'] }}" />
+                    <button class="delete-btn">削除</button>
+                  </div>
                 </form>
               </table>
             </div>

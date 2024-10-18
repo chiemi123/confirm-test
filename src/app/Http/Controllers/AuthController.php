@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Pagination\Paginator;
+use App\Http\Requests\ContactRequest;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Http\Request;
 use App\Models\Contact;
@@ -25,7 +26,7 @@ class AuthController extends Controller
 
         return redirect()->route('auth.login');
     }
-
+    //ページネーションの実装
     public function index()
     {
         $contacts = Contact::Paginate(7);
@@ -65,5 +66,12 @@ class AuthController extends Controller
 
         // 結果をビューに返す
         return view('admin', ['contacts' => $contacts]);
+    }
+    // 削除機能の実装
+    public function destroy(ContactRequest $request)
+    {
+        contact::find($request->id)->delete();
+
+        return redirect('/admin');
     }
 }

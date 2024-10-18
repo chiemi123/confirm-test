@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Admin\UserExportController;
 
 Route::get('/', [ContactController::class, 'index']);
 Route::get('/contact', function () {
@@ -13,8 +14,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AuthController::class, 'index']);
 });
 Route::get('/admin', [AuthController::class, 'search']);
+Route::delete('/contacts/delete', [AuthController::class, 'destroy']);
+Route::get('admin/users/export', [UserExportController::class, 'export'])->name('admin.users.export');
 Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
-Route::post('/contacts', [ContactController::class, 'store']);
+Route::post('/thanks', [ContactController::class, 'store']);
 /*
 |--------------------------------------------------------------------------
 | Web Routes

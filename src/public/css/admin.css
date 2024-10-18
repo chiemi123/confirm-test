@@ -78,7 +78,7 @@ td {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 60%; /* Change the width for PC */
+    width: 30%; /* Change the width for PC */
     max-width: 650px;
     background-color: #fefefe;
     z-index: 2;

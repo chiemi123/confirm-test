@@ -54,4 +54,15 @@ class ContactRequest extends FormRequest
             'detail.required' => 'お問い合わせ内容を入力してください',
         ];
     }
+
+    /**
+     * 入力値の整形
+     */
+    protected function passedValidation()
+    {
+        // 電話番号の3つのパーツを結合して1つにする
+        $this->merge([
+            'tel' => $this->tel1 . $this->tel2 . $this->tel3,
+        ]);
+    }
 }
